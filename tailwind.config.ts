@@ -13,7 +13,7 @@ const config: Config = {
         display: [
           '2.5rem',
           {
-            fontWeight: 'regular',
+            fontWeight: 'normal',
             lineHeight: '0.9375rem',
             letterSpacing: '-0.03125rem',
           },
@@ -21,7 +21,7 @@ const config: Config = {
         h1: [
           '1.5rem',
           {
-            fontWeight: 'regular',
+            fontWeight: 'normal',
             lineHeight: '0.9375rem',
             letterSpacing: '-0.03125rem',
           },
@@ -29,7 +29,7 @@ const config: Config = {
         title: [
           '0.875rem',
           {
-            fontWeight: 'regular',
+            fontWeight: 'normal',
             lineHeight: '0.9375rem',
             letterSpacing: '-0.03125rem',
           },
@@ -37,7 +37,7 @@ const config: Config = {
         subtitle: [
           '0.75rem',
           {
-            fontWeight: 'regular',
+            fontWeight: 'normal',
             lineHeight: '0.9375rem',
             letterSpacing: '-0.03125rem',
           },
@@ -45,7 +45,7 @@ const config: Config = {
         body: [
           '0.75rem',
           {
-            fontWeight: 'regular',
+            fontWeight: 'normal',
             lineHeight: '0.9375rem',
             letterSpacing: '-0.03125rem',
           },
