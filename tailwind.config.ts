@@ -50,6 +50,14 @@ const config: Config = {
             letterSpacing: '-0.03125rem',
           },
         ],
+        cta: [
+          '1rem',
+          {
+            fontWeight: 'normal',
+            lineHeight: '0.9375rem',
+            letterSpacing: '-0.03125rem',
+          },
+        ],
       },
       padding: {
         '1': '1px',
@@ -68,6 +76,7 @@ const config: Config = {
         '14': '14px',
         '15': '15px',
         '16': '16px',
+        '20': '20px',
       },
       borderRadius: {
         none: '0',

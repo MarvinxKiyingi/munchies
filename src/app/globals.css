@@ -23,6 +23,15 @@
 body {
   @apply font-sfProText text-black bg-off-white text-body
 }
+
 h1{
 @apply text-h1
+}
+
+.primary-cta{
+  @apply flex w-full justify-center bg-green text-cta text-white font-bold px-12 py-20 border border-stroke rounded
+}
+
+.secondary-cta{
+  @apply flex w-full justify-center bg-transparent text-cta text-black font-bold px-12 py-20 border border-stroke rounded
 }
