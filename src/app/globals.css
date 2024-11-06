@@ -35,3 +35,18 @@ h1{
 .secondary-cta{
   @apply flex w-full justify-center bg-transparent text-cta text-black font-bold px-12 py-20 border border-stroke rounded
 }
+
+.chip-button{
+  @apply flex justify-center w-fit px-12 py-8 text-body bg-white text-black border-0.6 border-stroke rounded
+}
+
+.chip-display{
+  @apply flex items-center gap-1 justify-center w-fit px-12 py-8 text-body bg-white text-black border-0.6 border-stroke rounded-large
+}
+
+.open-indicator{
+ @apply w-2.5 h-2.5 bg-green rounded-full
+}
+.closed-indicator{
+@apply w-2.5 h-2.5 bg-black rounded-full
+}
