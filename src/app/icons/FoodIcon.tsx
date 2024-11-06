@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-export type IIcon = {
+export type IFoodIcon = {
   variant:
     | 'hamburger'
     | 'pizza'
@@ -13,7 +13,7 @@ export type IIcon = {
   size?: 'small' | 'large';
   className?: string;
 };
-const Icon = ({ variant, size = 'small', className }: IIcon) => {
+const FoodIcon = ({ variant, size = 'small', className }: IFoodIcon) => {
   const iconSize = size === 'small' ? '80' : '140';
   const imagePath = `/${variant}.png`;
   return (
@@ -27,4 +27,4 @@ const Icon = ({ variant, size = 'small', className }: IIcon) => {
   );
 };
 
-export default Icon;
+export default FoodIcon;

@@ -1,5 +1,5 @@
-import { IIcon } from '@/app/icons/Icon';
+import { IFoodIcon } from '@/app/icons/FoodIcon';
 
-export type IFoodCard = IIcon & {
+export type IFoodCard = IFoodIcon & {
   text: string;
 };

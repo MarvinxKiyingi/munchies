@@ -1,6 +1,6 @@
 import React from 'react';
 import { IFoodCard } from './IFoodCard';
-import Icon from '@/app/icons/Icon';
+import FoodIcon from '@/app/icons/FoodIcon';
 
 const FoodCard = ({ text, variant }: IFoodCard) => {
   return (
@@ -8,7 +8,7 @@ const FoodCard = ({ text, variant }: IFoodCard) => {
       <span className='relative flex-wrap w-full max-w-[55%] h-fit py-16 pl-12 text-title overflow-wrap break-word'>
         {text}
       </span>
-      <Icon variant={variant} className={'absolute right-[-10.5px]'} />
+      <FoodIcon variant={variant} className={'absolute right-[-10.5px]'} />
     </button>
   );
 };
