@@ -1,12 +1,12 @@
 import React from 'react';
 import { IChip } from './IChip';
 
-const Chips = ({ text, variant, isOpen }: IChip) => {
+const Chips = ({ text, variant, isCurrentlyOpen }: IChip) => {
   const chipVariant = variant === 'button' ? 'chip-button' : 'chip-display';
   const indicator =
-    isOpen === true ? (
+    isCurrentlyOpen === true ? (
       <span className='open-indicator' />
-    ) : isOpen === false ? (
+    ) : isCurrentlyOpen === false ? (
       <span className='closed-indicator' />
     ) : null;
 
