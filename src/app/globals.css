@@ -8,15 +8,17 @@
   --off-white: ##FAFAFA;
   --black: #000000;
   --green: #00703A;
+  --opacity: rgba(255,255,255,0.6);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --white: #121212;
-    --stroke: #rgba(255, 255, 255, 0.1);
+    --stroke: rgba(255, 255, 255, 0.1);
     --off-white: #1E1E1E;
     --black: #E0E0E0;
     --green: #29A745;
+  --opacity: rgba(0,0,0,0.6);
   }
 }
 

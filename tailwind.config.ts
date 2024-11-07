@@ -102,6 +102,7 @@ const config: Config = {
         'off-white': 'var(--off-white)',
         black: 'var(--black)',
         green: 'var(--green)',
+        opacity: 'var(--opacity)',
       },
       fontFamily: {
         sfProText: [
