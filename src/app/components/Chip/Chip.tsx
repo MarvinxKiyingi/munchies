@@ -1,7 +1,7 @@
 import React from 'react';
 import { IChip } from './IChip';
 
-const Chips = ({ text, variant, isCurrentlyOpen }: IChip) => {
+const Chip = ({ text, variant, isCurrentlyOpen }: IChip) => {
   const chipVariant = variant === 'button' ? 'chip-button' : 'chip-display';
   const indicator =
     isCurrentlyOpen === true ? (
@@ -18,4 +18,4 @@ const Chips = ({ text, variant, isCurrentlyOpen }: IChip) => {
   );
 };
 
-export default Chips;
+export default Chip;
