@@ -77,6 +77,8 @@ const config: Config = {
         '15': '15px',
         '16': '16px',
         '20': '20px',
+        '24': '24px',
+        '40': '40px',
       },
       borderRadius: {
         none: '0',
@@ -115,6 +117,23 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({
+      addUtilities,
+    }: {
+      addUtilities: (utilities: Record<string, Record<string, string>>) => void;
+    }) {
+      addUtilities({
+        '.no-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+        '.no-scrollbar::-webkit-scrollbar': {
+          display: 'none',
+        },
+      });
+    },
+  ],
 };
+
 export default config;

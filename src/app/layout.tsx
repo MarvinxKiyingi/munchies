@@ -3,9 +3,19 @@ import localFont from 'next/font/local';
 import './globals.css';
 
 const sfProText = localFont({
-  src: './fonts/SF-Pro.ttf',
+  src: [
+    {
+      path: './fonts/SF-Pro.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/SF-Pro.ttf',
+      weight: '700',
+      style: 'bold',
+    },
+  ],
   variable: '--font-sf-pro-text',
-  weight: '400',
 });
 
 export const metadata: Metadata = {
