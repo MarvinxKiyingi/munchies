@@ -1,18 +1,17 @@
-import React from 'react';
-import { IResultcard } from './IResultcard';
+import { IRestaurantCard } from './IRestaurantCard';
 import FoodIcon from '@/app/icons/FoodIcon';
 import OpacityLayer from './OpacityLayer/OpacityLayer';
 import ClosedNotice from './ClosedNotice/ClosedNotice';
 import ChipGroup from './ChipsGroup/ChipGroup';
 import TitleGroup from './TitleGroup/TitleGroup';
 
-const Resultcard = ({
+const RestaurantCard = ({
   title,
   isCurrentlyOpen,
   chipVariant,
   deliveryTimeMinutes,
-  iconVariant,
-}: IResultcard) => {
+  image_url,
+}: IRestaurantCard) => {
   const chipProps = {
     isCurrentlyOpen,
     isCurrentlyOpenText: isCurrentlyOpen ? 'Open' : 'Closed',
@@ -22,9 +21,9 @@ const Resultcard = ({
 
   return (
     <div className='relative'>
-      <div className='relative flex flex-col justify-between gap-4 w-[327px] h-[202px] border-0.6 border-stroke rounded p-16 overflow-hidden'>
+      <div className='relative flex flex-col justify-between gap-4 w-full h-[202px] border-0.6 border-stroke rounded p-16 bg-white overflow-hidden'>
         <FoodIcon
-          variant={iconVariant}
+          image_url={image_url}
           size='large'
           className={`absolute top-[-30px] right-[-30px]`}
         />
@@ -41,4 +40,4 @@ const Resultcard = ({
   );
 };
 
-export default Resultcard;
+export default RestaurantCard;

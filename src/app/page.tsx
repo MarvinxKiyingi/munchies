@@ -1,56 +1,58 @@
-'use client';
-import { useEffect, useState } from 'react';
-import { redirect } from 'next/navigation';
-import Link from 'next/link';
-import Logo from './icons/Logo/Logo';
+import FilterSection from './components/FilterSection/FilterSection';
+import RestaurantList from './components/RestaurantList/RestaurantList';
+import { fetchDataWithErrorHandling } from './utils/functions/fetchDataWithErrorHandling';
+import { filterRestaurantsByParams } from './utils/functions/filterRestaurantsByParams';
+import { getFilteredPriceRangeList } from './utils/functions/getFilteredPriceRangeList';
+import { getFilters } from './utils/functions/getFilters';
+import { getRestaurants } from './utils/functions/getRestaurants';
+import { getSelectedParams } from './utils/functions/getSelectedParams';
+import { ISearchParams } from './Models/ISearchParams';
+import { deliveryTimeOptions } from './utils/deliveryTimeOptions';
 
-const HomePage = () => {
-  const [isDesktop, setIsDesktop] = useState(false);
+const HomePage = async ({ searchParams: asyncSearchParams }: ISearchParams) => {
+  const searchParams = await asyncSearchParams;
 
-  useEffect(() => {
-    const checkScreenSize = () => {
-      if (window.innerWidth >= 1024) {
-        setIsDesktop(true);
-      } else {
-        setIsDesktop(false);
-      }
-    };
+  const restaurants = await fetchDataWithErrorHandling(
+    getRestaurants,
+    'Failed to fetch restaurants'
+  );
+  const filters = await fetchDataWithErrorHandling(
+    getFilters,
+    'Failed to fetch filters'
+  );
+  const filteredPriceRanges = await fetchDataWithErrorHandling(
+    getFilteredPriceRangeList,
+    'Failed to fetch price ranges'
+  );
 
-    checkScreenSize();
+  const selectedFilters = getSelectedParams(searchParams.filter);
+  const selectedPriceRanges = getSelectedParams(searchParams.price_range);
 
-    window.addEventListener('resize', checkScreenSize);
+  const filterIds = filters
+    .filter((filter) => selectedFilters.includes(filter.name.toLowerCase()))
+    .map((filter) => filter.id);
 
-    if (isDesktop) {
-      redirect('/restaurants');
-    }
+  const priceRangeIds = filteredPriceRanges
+    .filter((priceRange) => selectedPriceRanges.includes(priceRange.range))
+    .map((priceRange) => priceRange.id);
 
-    return () => {
-      window.removeEventListener('resize', checkScreenSize);
-    };
-  }, [isDesktop]);
+  const selectedDeliveryTime = searchParams.delivery_time || '';
+
+  const filteredRestaurants = filterRestaurantsByParams({
+    filterIds,
+    priceRangeIds,
+    restaurants,
+    selectedDeliveryTime,
+  });
 
   return (
-    <section className='flex flex-col gap-6 h-[100dvh] px-24 bg-green text-[white]'>
-      <div className='flex pt-40'>
-        <Logo fillColor='white' />
-      </div>
-      <div className='flex flex-col gap-6 h-full pt-[187px] pb-40 justify-between '>
-        <div className='flex flex-col gap-4 w-[248px]'>
-          <h2 className='text-[48px] font-bold leading-[normal]'>
-            Treat yourself.
-          </h2>
-          <p className='text-title'>
-            Find the best restaurants in your city and get it delivered to your
-            place!
-          </p>
-        </div>
-        <Link
-          href='/restaurants'
-          className='secondary-cta !border-[white] !text-[white]'
-        >
-          Continue
-        </Link>
-      </div>
+    <section className='flex flex-col flex-1 gap-6 overflow-hidden pb-20 no-scrollbar'>
+      <FilterSection
+        filters={filters}
+        filteredPriceRanges={filteredPriceRanges}
+        deliveryTimeOptions={deliveryTimeOptions}
+      />
+      <RestaurantList restaurants={filteredRestaurants} />
     </section>
   );
 };

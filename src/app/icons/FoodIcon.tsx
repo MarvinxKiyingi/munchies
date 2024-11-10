@@ -1,25 +1,23 @@
-import React from 'react';
 import Image from 'next/image';
 
 export type IFoodIcon = {
-  variant:
-    | 'hamburger'
-    | 'pizza'
-    | 'taco'
-    | 'coffee'
-    | 'fries'
-    | 'mexican'
-    | 'breakfast';
+  image_url: string;
+  name?: string;
   size?: 'small' | 'large';
   className?: string;
 };
-const FoodIcon = ({ variant, size = 'small', className }: IFoodIcon) => {
+const FoodIcon = ({
+  image_url,
+  size = 'small',
+  className,
+  name,
+}: IFoodIcon) => {
   const iconSize = size === 'small' ? '80' : '140';
-  const imagePath = `/${variant}.png`;
+  const imagePath = `${image_url}`;
   return (
     <Image
       src={imagePath}
-      alt={`Image of ${variant}`}
+      alt={`Image of ${name}`}
       width={iconSize}
       height={iconSize}
       className={className}

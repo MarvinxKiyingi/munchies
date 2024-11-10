@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import Logo from './icons/Logo/Logo';
 
 const sfProText = localFont({
   src: [
@@ -31,7 +32,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${sfProText.variable}`}>{children}</body>
+      <body
+        className={`${sfProText.variable} flex flex-col gap-6 h-[100dvh] px-24`}
+      >
+        <section className='flex pt-40'>
+          <Logo />
+        </section>
+        {children}
+      </body>
     </html>
   );
 }
