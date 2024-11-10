@@ -1,4 +1,3 @@
-import React from 'react';
 import { IClosedNotice } from './IClosedNotice';
 
 const ClosedNotice = ({ text }: IClosedNotice) => {

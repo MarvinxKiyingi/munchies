@@ -1,4 +1,3 @@
-import React from 'react';
 import Chips from '../../Chip/Chip';
 import { IChipGroup } from './IChipGroup';
 

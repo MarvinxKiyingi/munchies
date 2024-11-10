@@ -5,8 +5,8 @@
 :root {
   --white: #ffffff;
   --stroke: rgba(0, 0, 0, 0.1);
-  --off-white: ##FAFAFA;
-  --black: #000000;
+  --off-white: #FAFAFA;
+  --black: rgba(0, 0, 0, 1);
   --green: #00703A;
   --opacity: rgba(255,255,255,0.6);
 }
@@ -17,13 +17,12 @@
     --stroke: rgba(255, 255, 255, 0.1);
     --off-white: #1E1E1E;
     --black: #E0E0E0;
-    --green: #29A745;
   --opacity: rgba(0,0,0,0.6);
   }
 }
 
 body {
-  @apply font-sfProText text-black bg-off-white text-body
+  @apply font-sfProText text-black bg-off-white text-body overflow-hidden
 }
 
 h1{
@@ -39,7 +38,7 @@ h1{
 }
 
 .chip-button{
-  @apply flex justify-center w-fit px-12 py-8 text-body bg-white text-black border-0.6 border-stroke rounded
+  @apply flex justify-center w-fit px-12 py-8 text-body bg-white text-black border-0.6 border-stroke rounded whitespace-nowrap
 }
 
 .chip-display{

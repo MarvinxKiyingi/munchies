@@ -1,11 +1,22 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import Logo from './icons/Logo/Logo';
 
 const sfProText = localFont({
-  src: './fonts/SF-Pro.ttf',
+  src: [
+    {
+      path: './fonts/SF-Pro.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/SF-Pro.ttf',
+      weight: '700',
+      style: 'bold',
+    },
+  ],
   variable: '--font-sf-pro-text',
-  weight: '400',
 });
 
 export const metadata: Metadata = {
@@ -21,7 +32,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={`${sfProText.variable}`}>{children}</body>
+      <body
+        className={`${sfProText.variable} flex flex-col gap-6 h-[100dvh] px-24`}
+      >
+        <section className='flex pt-40'>
+          <Logo />
+        </section>
+        {children}
+      </body>
     </html>
   );
 }
