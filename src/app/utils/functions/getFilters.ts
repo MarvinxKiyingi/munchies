@@ -12,5 +12,6 @@ export const getFilters = async (): Promise<IFilter[] | null> => {
   }
 
   const data: IFiltersList = await res.json();
-  return data.filters.length > 0 ? data.filters : null;
+
+  return data.filters && data.filters.length > 0 ? data.filters : null;
 };
