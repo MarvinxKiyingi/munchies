@@ -25,17 +25,18 @@ const FilterCard = ({
   return (
     <Link href={`?${queryString}`}>
       <div className='flex overflow-x-auto no-scrollbar min-h-[80px]'>
-        <div className='flex gap-[10px] '>
+        <ul className='flex gap-[10px] '>
           {filters.map((filter) => (
-            <FoodCard
-              key={filter.id}
-              image_url={filter.image_url}
-              name={filter.name}
-              iconSize='small'
-              title={filter.name}
-            />
+            <li key={filter.id}>
+              <FoodCard
+                image_url={filter.image_url}
+                name={filter.name}
+                iconSize='small'
+                title={filter.name}
+              />
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </Link>
   );

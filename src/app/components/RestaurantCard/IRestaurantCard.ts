@@ -1,8 +1,5 @@
-import { IChip } from '../Chip/IChip';
+import { IRestaurant } from '@/app/Models/IRestaurant';
 
-export type IRestaurantCard = Omit<IChip, 'text' | 'variant'> & {
-  chipVariant: IChip['variant'];
-  title: string;
-  deliveryTimeMinutes: number;
-  image_url: string;
+export type IRestaurantCard = {
+  restaurant: IRestaurant;
 };

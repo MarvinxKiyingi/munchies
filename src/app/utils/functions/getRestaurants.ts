@@ -1,20 +1,16 @@
 import { IRestaurant, IRestaurantsList } from '../../Models/IRestaurant';
 
-export const getRestaurants = async (): Promise<IRestaurant[]> => {
-  try {
-    const res = await fetch(
-      'https://work-test-web-2024-eze6j4scpq-lz.a.run.app/api/restaurants',
-      { next: { revalidate: 60 } }
-    );
+export const getRestaurants = async (): Promise<IRestaurant[] | null> => {
+  const res = await fetch(
+    'https://work-test-web-2024-eze6j4scpq-lz.a.run.app/api/restaurants',
+    { next: { revalidate: 3600 } }
+  );
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch restaurants');
-    }
-
-    const data: IRestaurantsList = await res.json();
-    return data.restaurants;
-  } catch (error) {
-    console.error('Error fetching restaurants:', error);
-    throw error;
+  if (!res.ok) {
+    console.error('Failed to fetch restaurants: ' + res.statusText);
+    return null;
   }
+
+  const data: IRestaurantsList = await res.json();
+  return data.restaurants.length > 0 ? data.restaurants : null;
 };
