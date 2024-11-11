@@ -6,6 +6,7 @@ import { filterRestaurantsByParams } from '@/app/utils/functions/filterRestauran
 import { getFilters } from '@/app/utils/functions/getFilters';
 import { getFilteredPriceRangeList } from '@/app/utils/functions/getFilteredPriceRangeList';
 import { getSelectedParams } from '@/app/utils/functions/getSelectedParams';
+import { isRestaurantCurrentlyOpen } from '@/app/utils/functions/isRestaurantCurrentlyOpen';
 
 const RestaurantList = async ({
   resolvedSearchParams,
@@ -52,12 +53,13 @@ const RestaurantList = async ({
     selectedDeliveryTime,
   });
 
+  console.log('filteredRestaurants:', filteredRestaurants);
   return (
-    <div className='flex flex-col gap-5 h-full overflow-auto no-scrollbar'>
+    <div className='flex flex-col gap-5 h-full overflow-auto no-scrollbar px-24 lg:gap-8 lg:px-0 lg:w-[88%]'>
       <h2 className='text-[20px]'>Restaurant’s</h2>
 
       {filteredRestaurants.length > 0 ? (
-        <div className='flex flex-col gap-5 pb-24 overflow-auto no-scrollbar'>
+        <div className='flex flex-col gap-5 pb-24 overflow-auto no-scrollbar lg:pb-0 lg:grid lg:grid-cols-3'>
           {filteredRestaurants.map((restaurant) => (
             <RestaurantCard key={restaurant.id} restaurant={restaurant} />
           ))}

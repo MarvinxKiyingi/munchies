@@ -40,9 +40,12 @@ const FilterSection = ({
 
   return (
     <>
-      <div className='flex flex-col gap-[10px]'>
-        <h2 className='text-body text-black'>Delivery time</h2>
-        <ul className='flex gap-[10px] overflow-x-auto no-scrollbar'>
+      <h2 className='hidden lg:flex text-h1 leading-[normal]'>Filter</h2>
+      <div className='flex flex-col gap-[10px] overflow-x-auto no-scrollbar'>
+        <h3 className='text-body text-[rgba(0,0,0,0.4)] font-bold'>
+          DELIVERY TIME
+        </h3>
+        <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
           {deliveryTimeOptions.map(({ label, value }) => (
             <li key={value}>
               <Link
@@ -62,8 +65,11 @@ const FilterSection = ({
         </ul>
       </div>
 
-      <div className='hidden lg:flex overflow-x-auto no-scrollbar'>
-        <ul className='flex gap-[10px]'>
+      <div className='hidden flex-col gap-[10px] lg:flex overflow-x-auto no-scrollbar'>
+        <h3 className='text-body text-[rgba(0,0,0,0.4)] font-bold '>
+          PRICE RANGE
+        </h3>
+        <ul className='flex gap-[10px] lg:flex-wrap'>
           {filteredPriceRanges.map((priceRange) => (
             <li key={priceRange.id}>
               <Link

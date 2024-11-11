@@ -11,7 +11,7 @@ const ChipsGroup = (props: IChipGroup) => {
   const text = isOpen.is_open ? 'Open' : 'Close';
 
   return (
-    <div className='relative flex gap-2 z-10 max-w-[70%]'>
+    <div className='relative flex gap-2 z-10'>
       <TextIndicatorChip text={text} isCurrentlyOpen={isOpen?.is_open} />
       {isOpen?.is_open && deliveryTime && (
         <TimeChip deliveryTime={deliveryTime} />

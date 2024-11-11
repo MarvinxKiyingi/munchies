@@ -20,6 +20,7 @@ export const filterRestaurantsByParams = ({
     );
 
     const matchesFilters = checkFilters(restaurant.filter_ids, filterIds);
+
     const matchesPriceRange = checkPriceRange(
       restaurant.price_range_id,
       priceRangeIds

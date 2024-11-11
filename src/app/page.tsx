@@ -21,10 +21,14 @@ const HomePage = async ({ searchParams }: ISearchParamsPromise) => {
   }
 
   return (
-    <section className='flex flex-col flex-1 gap-6 overflow-hidden no-scrollbar'>
-      <FilterSection filteredPriceRanges={filteredPriceRanges} />
-      <FilterCardGroup filters={filters} />
-      <RestaurantList resolvedSearchParams={resolvedSearchParams} />
+    <section className='flex flex-col flex-1 gap-6 overflow-hidden no-scrollbar lg:flex-row lg:gap-[20px] lg:pl-40'>
+      <div className='flex px-24 lg:p-24 lg:flex-col lg:w-[239px] lg:gap-8 lg:bg-white lg:border-0.6 lg:border-stroke lg:rounded'>
+        <FilterSection filteredPriceRanges={filteredPriceRanges} />
+      </div>
+      <div className='flex flex-col flex-1 gap-6 h-full lg:gap-10 overflow-hidden no-scrollbar'>
+        <FilterCardGroup filters={filters} />
+        <RestaurantList resolvedSearchParams={resolvedSearchParams} />
+      </div>
     </section>
   );
 };

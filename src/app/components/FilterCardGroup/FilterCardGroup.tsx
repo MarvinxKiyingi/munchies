@@ -37,7 +37,7 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
   };
   return (
     <div className='flex flex-col gap-5 min-h-[80px] overflow-auto no-scrollbar'>
-      <div className='flex overflow-x-auto no-scrollbar min-h-[80px]'>
+      <div className='flex overflow-x-auto no-scrollbar min-h-[80px] px-24 lg:pl-0'>
         <ul className='flex gap-[10px] '>
           {filters.map((filter) => (
             <li key={filter.id}>
