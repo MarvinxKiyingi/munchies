@@ -11,14 +11,14 @@ type IFilterSection = IFiltersList & {
   filteredPriceRanges: IPriceRange[];
 };
 const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
-  if (!filters) {
-    console.error('No filters available.');
-    return <div>No filters available. Please try again later.</div>;
-  }
   const searchParams = useSearchParams();
   const activeFilters = searchParams.getAll('filter');
   const deliveryTimes = searchParams.getAll('delivery_time');
   const activePriceRanges = searchParams.getAll('price_range');
+  if (!filters) {
+    console.error('No filters available.');
+    return <div>No filters available. Please try again later.</div>;
+  }
 
   const generateParamLink = (
     newDeliveryTime: string | null,
