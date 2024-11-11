@@ -30,7 +30,7 @@ h1{
 }
 
 .primary-cta{
-  @apply flex w-full justify-center bg-green text-cta text-white px-12 py-20 border border-stroke rounded
+  @apply flex w-full justify-center bg-green text-cta text-[white] px-12 py-20 border border-stroke rounded
 }
 
 .secondary-cta{
@@ -50,4 +50,8 @@ h1{
 }
 .closed-indicator{
 @apply w-2.5 h-2.5 bg-black rounded-full
+}
+
+.active{
+  @apply !bg-green !text-[white]
 }

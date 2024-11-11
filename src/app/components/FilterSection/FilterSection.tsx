@@ -46,13 +46,16 @@ const FilterSection = ({
           {deliveryTimeOptions.map(({ label, value }) => (
             <li key={value}>
               <Link
+                className={`chip-button ${
+                  deliveryTime === value ? 'active' : ''
+                }`}
                 href={generateParamLink(
                   deliveryTime !== value ? value : '',
                   null,
                   null
                 )}
               >
-                <span className='chip-button'>{label}</span>
+                {label}
               </Link>
             </li>
           ))}
@@ -64,6 +67,9 @@ const FilterSection = ({
           {filteredPriceRanges.map((priceRange) => (
             <li key={priceRange.id}>
               <Link
+                className={`chip-button ${
+                  activePriceRanges.includes(priceRange.range) ? 'active' : ''
+                }`}
                 href={generateParamLink(deliveryTime, null, priceRange.range)}
               >
                 {priceRange.range}

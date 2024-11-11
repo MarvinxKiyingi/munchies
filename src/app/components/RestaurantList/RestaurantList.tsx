@@ -70,9 +70,9 @@ const RestaurantList = async ({
           <Button
             as='link'
             href='/'
-            variant='secondary'
+            variant='primary'
             text='Reset filter'
-            className='!border-black'
+            className=''
           />
         </div>
       )}

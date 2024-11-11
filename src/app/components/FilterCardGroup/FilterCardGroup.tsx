@@ -42,7 +42,6 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
           {filters.map((filter) => (
             <li key={filter.id}>
               <Link
-                key={filter.id}
                 href={generateParamLink(
                   deliveryTime,
                   filter.name.toLowerCase(),
@@ -54,6 +53,11 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
                   name={filter.name}
                   iconSize='small'
                   title={filter.name}
+                  className={
+                    activeFilters.includes(filter.name.toLowerCase())
+                      ? 'active'
+                      : ''
+                  }
                 />
               </Link>
             </li>
