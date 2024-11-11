@@ -1,5 +1,3 @@
-import { IRestaurant } from '@/app/Models/IRestaurant';
+import { IRestaurantWithOpenStatus } from '@/app/Models/IRestaurantWithOpenStatus';
 
-export type IRestaurantCard = {
-  restaurant: IRestaurant;
-};
+export type IRestaurantCard = IRestaurantWithOpenStatus;

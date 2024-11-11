@@ -1,30 +1,29 @@
 import { IFilterRestaurantsByParams } from '../../Models/IFilterRestaurantsByParams';
-import { checkDeliveryTime } from './checkDeliveryTime';
+import { checkDeliveryTimes } from './checkDeliveryTimes';
 import { checkFilters } from './checkFilters';
-import { checkPriceRange } from './checkPriceRange';
 
 export const filterRestaurantsByParams = ({
   filterIds,
   priceRangeIds,
   restaurants,
-  selectedDeliveryTime,
+  selectedDeliveryTimeValues,
 }: IFilterRestaurantsByParams) => {
   if (!restaurants || restaurants.length === 0) {
     return [];
   }
 
   return restaurants.filter((restaurant) => {
-    const matchesDeliveryTime = checkDeliveryTime(
+    const matchesDeliveryTimes = checkDeliveryTimes(
       restaurant.delivery_time_minutes,
-      selectedDeliveryTime
+      selectedDeliveryTimeValues
     );
 
     const matchesFilters = checkFilters(restaurant.filter_ids, filterIds);
-    const matchesPriceRange = checkPriceRange(
-      restaurant.price_range_id,
-      priceRangeIds
-    );
 
-    return matchesDeliveryTime && matchesFilters && matchesPriceRange;
+    const matchesPriceRange =
+      priceRangeIds.length === 0 ||
+      priceRangeIds.includes(restaurant.price_range_id);
+
+    return matchesDeliveryTimes && matchesFilters && matchesPriceRange;
   });
 };

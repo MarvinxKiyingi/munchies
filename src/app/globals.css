@@ -22,7 +22,7 @@
 }
 
 body {
-  @apply flex flex-col gap-6 h-[100dvh] px-24 font-sfProText text-black bg-off-white text-body overflow-hidden
+  @apply flex flex-col gap-6 h-[100dvh] font-sfProText text-black bg-off-white text-body overflow-hidden lg:gap-12 2xl:mx-auto 2xl:w-min
 }
 
 h1{
@@ -54,4 +54,7 @@ h1{
 
 .active{
   @apply !bg-green !text-[white]
+}
+.active-mobile-only{
+  @apply max-lg:!bg-green max-lg:!text-[white]
 }

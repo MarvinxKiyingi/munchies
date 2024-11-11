@@ -9,8 +9,12 @@ import FoodCard from '../FoodCard/FoodCard';
 const FilterCardGroup = ({ filters }: IFiltersList) => {
   const searchParams = useSearchParams();
   const activeFilters = searchParams.getAll('filter');
-  const deliveryTime = searchParams.get('delivery_time') || '';
+  const deliveryTimes = searchParams.getAll('delivery_time');
   const activePriceRanges = searchParams.getAll('price_range');
+  if (!filters) {
+    console.error('No filters available.');
+    return <div>No filters available. Please try again later.</div>;
+  }
 
   const generateParamLink = (
     newDeliveryTime: string | null,
@@ -22,10 +26,16 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
       activePriceRanges,
       newPriceRange
     );
+    const updatedDeliveryTimes = addOrRemoveItem(
+      deliveryTimes,
+      newDeliveryTime
+    );
 
     const queryParams = new URLSearchParams();
 
-    if (newDeliveryTime) queryParams.set('delivery_time', newDeliveryTime);
+    updatedDeliveryTimes.forEach((deliveryTime) =>
+      queryParams.append('delivery_time', deliveryTime)
+    );
 
     updatedFilters.forEach((filter) => queryParams.append('filter', filter));
 
@@ -37,16 +47,12 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
   };
   return (
     <div className='flex flex-col gap-5 min-h-[80px] overflow-auto no-scrollbar'>
-      <div className='flex overflow-x-auto no-scrollbar min-h-[80px]'>
+      <div className='flex overflow-x-auto no-scrollbar min-h-[80px] px-24 lg:pl-0'>
         <ul className='flex gap-[10px] '>
           {filters.map((filter) => (
             <li key={filter.id}>
               <Link
-                href={generateParamLink(
-                  deliveryTime,
-                  filter.name.toLowerCase(),
-                  null
-                )}
+                href={generateParamLink(null, filter.name.toLowerCase(), null)}
               >
                 <FoodCard
                   image_url={filter.image_url}
@@ -55,7 +61,7 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
                   title={filter.name}
                   className={
                     activeFilters.includes(filter.name.toLowerCase())
-                      ? 'active'
+                      ? 'active-mobile-only'
                       : ''
                   }
                 />

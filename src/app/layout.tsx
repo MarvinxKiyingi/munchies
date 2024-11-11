@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${sfProText.variable} `}>
-        <section className='flex pt-40'>
+        <section className='flex pt-40 px-24 lg:px-40'>
           <Logo />
         </section>
         {children}
