@@ -5,5 +5,5 @@ export type IFilter = {
 };
 
 export interface IFiltersList {
-  filters: IFilter[];
+  filters: IFilter[] | null;
 }

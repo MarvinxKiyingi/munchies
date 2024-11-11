@@ -7,6 +7,10 @@ import { useSearchParams } from 'next/navigation';
 import FoodCard from '../FoodCard/FoodCard';
 
 const FilterCardGroup = ({ filters }: IFiltersList) => {
+  if (!filters) {
+    console.error('No filters available.');
+    return <div>No filters available. Please try again later.</div>;
+  }
   const searchParams = useSearchParams();
   const activeFilters = searchParams.getAll('filter');
   const deliveryTimes = searchParams.getAll('delivery_time');
@@ -55,11 +59,6 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
                   name={filter.name}
                   iconSize='small'
                   title={filter.name}
-                  className={
-                    activeFilters.includes(filter.name.toLowerCase())
-                      ? 'active'
-                      : ''
-                  }
                 />
               </Link>
             </li>

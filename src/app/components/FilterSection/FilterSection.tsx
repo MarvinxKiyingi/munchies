@@ -5,12 +5,16 @@ import { useSearchParams } from 'next/navigation';
 import { IPriceRange } from '@/app/Models/IPriceRange';
 import { addOrRemoveItem } from '@/app/utils/functions/addOrRemoveItem';
 import { deliveryTimeOptions } from '@/app/utils/deliveryTimeOptions';
+import { IFiltersList } from '@/app/Models/IFilter';
 
-const FilterSection = ({
-  filteredPriceRanges,
-}: {
+type IFilterSection = IFiltersList & {
   filteredPriceRanges: IPriceRange[];
-}) => {
+};
+const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
+  if (!filters) {
+    console.error('No filters available.');
+    return <div>No filters available. Please try again later.</div>;
+  }
   const searchParams = useSearchParams();
   const activeFilters = searchParams.getAll('filter');
   const deliveryTimes = searchParams.getAll('delivery_time');
@@ -47,6 +51,27 @@ const FilterSection = ({
   return (
     <>
       <h2 className='hidden lg:flex text-h1 leading-[normal]'>Filter</h2>
+      <div className='hidden lg:flex lg:flex-col lg:gap-[10px] lg:overflow-x-auto no-scrollbar'>
+        <h3 className='text-body text-[rgba(0,0,0,0.4)] font-bold'>
+          FOOD CATEGORY
+        </h3>
+        <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
+          {filters.map((filter) => (
+            <li key={filter.id}>
+              <Link
+                className={`chip-button ${
+                  activeFilters.includes(filter.name.toLowerCase())
+                    ? 'active'
+                    : ''
+                }`}
+                href={generateParamLink(null, filter.name.toLowerCase(), null)}
+              >
+                {filter.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
       <div className='flex flex-col gap-[10px] overflow-x-auto no-scrollbar'>
         <h3 className='text-body text-[rgba(0,0,0,0.4)] font-bold'>
           DELIVERY TIME
