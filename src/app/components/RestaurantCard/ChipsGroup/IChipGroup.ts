@@ -1,7 +1,6 @@
-import { IChip } from '../../Chip/IChip';
+import { IIsRestaurantCurrentlyOpen } from '@/app/Models/IIsRestaurantCurrentlyOpen';
 
-export type IChipGroup = Pick<IChip, 'isCurrentlyOpen'> & {
-  isCurrentlyOpenText: string;
-  chipVariant: IChip['variant'];
-  deliveryTime: string;
+export type IChipGroup = {
+  isOpen: IIsRestaurantCurrentlyOpen | null;
+  deliveryTime: number;
 };

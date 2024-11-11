@@ -4,20 +4,17 @@ import OpacityLayer from './OpacityLayer/OpacityLayer';
 import ClosedNotice from './ClosedNotice/ClosedNotice';
 import ChipGroup from './ChipsGroup/ChipGroup';
 import TitleGroup from './TitleGroup/TitleGroup';
+import { getRestaurantById } from '@/app/utils/functions/getRestaurantById';
+import { isRestaurantCurrentlyOpen } from '@/app/utils/functions/isRestaurantCurrentlyOpen';
 
-const RestaurantCard = ({
-  title,
-  isCurrentlyOpen,
-  chipVariant,
-  deliveryTimeMinutes,
-  image_url,
-}: IRestaurantCard) => {
-  const chipProps = {
-    isCurrentlyOpen,
-    isCurrentlyOpenText: isCurrentlyOpen ? 'Open' : 'Closed',
-    chipVariant,
-    deliveryTime: `${deliveryTimeMinutes} min`,
-  };
+const RestaurantCard = async (props: IRestaurantCard) => {
+  const { image_url, id, name } = props.restaurant;
+  const restaurant = await getRestaurantById(id);
+  if (!restaurant) {
+    return <div>cant fetch</div>;
+  }
+
+  const isOpen = await isRestaurantCurrentlyOpen(restaurant.id);
 
   return (
     <div className='relative'>
@@ -28,14 +25,17 @@ const RestaurantCard = ({
           className={`absolute top-[-30px] right-[-30px]`}
         />
 
-        <ChipGroup {...chipProps} />
+        <ChipGroup
+          isOpen={isOpen}
+          deliveryTime={restaurant.delivery_time_minutes}
+        />
 
-        {!isCurrentlyOpen && <ClosedNotice text='Opens tomorrow at 12 pm' />}
+        {!isOpen?.is_open && <ClosedNotice text='Opens tomorrow at 12 pm' />}
 
-        <TitleGroup title={title} />
+        <TitleGroup name={name} />
       </div>
 
-      {!isCurrentlyOpen && <OpacityLayer />}
+      {!isOpen?.is_open && <OpacityLayer />}
     </div>
   );
 };

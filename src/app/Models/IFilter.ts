@@ -4,6 +4,6 @@ export type IFilter = {
   image_url: string;
 };
 
-export interface IFiltersResponse {
+export interface IFiltersList {
   filters: IFilter[];
 }

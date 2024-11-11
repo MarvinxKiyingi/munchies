@@ -1,8 +1,13 @@
 export const getSelectedParams = (
-  param: string | string[] | null
+  param: string | string[] | null | undefined
 ): string[] => {
   if (Array.isArray(param)) {
     return param;
   }
-  return param ? [param].filter(Boolean) : [];
+
+  if (param) {
+    return [param];
+  }
+
+  return [];
 };

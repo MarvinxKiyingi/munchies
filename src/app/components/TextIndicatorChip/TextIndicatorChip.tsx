@@ -1,21 +1,19 @@
 import React from 'react';
-import { IChip } from './IChip';
+import { ITextIndicatorChip } from './ITextIndicatorChip';
 
-const Chip = ({ text, variant, isCurrentlyOpen }: IChip) => {
-  const chipVariant = variant === 'button' ? 'chip-button' : 'chip-display';
+const TextIndicatorChip = ({ isCurrentlyOpen, text }: ITextIndicatorChip) => {
   const indicator =
     isCurrentlyOpen === true ? (
       <span className='open-indicator' />
     ) : isCurrentlyOpen === false ? (
       <span className='closed-indicator' />
     ) : null;
-
   return (
-    <div className={chipVariant}>
+    <div className='chip-display'>
       {indicator}
       <span>{text}</span>
     </div>
   );
 };
 
-export default Chip;
+export default TextIndicatorChip;
