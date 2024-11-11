@@ -4,5 +4,5 @@ export type IFilterRestaurantsByParams = {
   filterIds: string[];
   priceRangeIds: string[];
   restaurants: IRestaurant[];
-  selectedDeliveryTime: string | string[];
+  selectedDeliveryTimeValues: string[];
 };

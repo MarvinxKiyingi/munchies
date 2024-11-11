@@ -13,7 +13,7 @@ const FilterSection = ({
 }) => {
   const searchParams = useSearchParams();
   const activeFilters = searchParams.getAll('filter');
-  const deliveryTime = searchParams.get('delivery_time') || '';
+  const deliveryTimes = searchParams.getAll('delivery_time');
   const activePriceRanges = searchParams.getAll('price_range');
 
   const generateParamLink = (
@@ -26,10 +26,16 @@ const FilterSection = ({
       activePriceRanges,
       newPriceRange
     );
+    const updatedDeliveryTimes = addOrRemoveItem(
+      deliveryTimes,
+      newDeliveryTime
+    );
 
     const queryParams = new URLSearchParams();
 
-    if (newDeliveryTime) queryParams.set('delivery_time', newDeliveryTime);
+    updatedDeliveryTimes.forEach((deliveryTime) =>
+      queryParams.append('delivery_time', deliveryTime)
+    );
     updatedFilters.forEach((filter) => queryParams.append('filter', filter));
     updatedPriceRanges.forEach((range) =>
       queryParams.append('price_range', range)
@@ -50,13 +56,9 @@ const FilterSection = ({
             <li key={value}>
               <Link
                 className={`chip-button ${
-                  deliveryTime === value ? 'active' : ''
+                  deliveryTimes.includes(value) ? 'active' : ''
                 }`}
-                href={generateParamLink(
-                  deliveryTime !== value ? value : '',
-                  null,
-                  null
-                )}
+                href={generateParamLink(value, null, null)}
               >
                 {label}
               </Link>
@@ -76,7 +78,7 @@ const FilterSection = ({
                 className={`chip-button ${
                   activePriceRanges.includes(priceRange.range) ? 'active' : ''
                 }`}
-                href={generateParamLink(deliveryTime, null, priceRange.range)}
+                href={generateParamLink(null, null, priceRange.range)}
               >
                 {priceRange.range}
               </Link>

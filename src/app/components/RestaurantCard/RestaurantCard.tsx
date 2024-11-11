@@ -5,16 +5,18 @@ import ClosedNotice from './ClosedNotice/ClosedNotice';
 import ChipGroup from './ChipsGroup/ChipGroup';
 import TitleGroup from './TitleGroup/TitleGroup';
 import { getRestaurantById } from '@/app/utils/functions/getRestaurantById';
-import { isRestaurantCurrentlyOpen } from '@/app/utils/functions/isRestaurantCurrentlyOpen';
 
-const RestaurantCard = async (props: IRestaurantCard) => {
-  const { image_url, id, name } = props.restaurant;
+const RestaurantCard = async ({
+  image_url,
+  id,
+  name,
+  isOpen,
+}: IRestaurantCard) => {
   const restaurant = await getRestaurantById(id);
   if (!restaurant) {
-    return <div>cant fetch</div>;
+    console.error('No restaurants available.');
+    return <div>No restaurants available. Please try again later.</div>;
   }
-
-  const isOpen = await isRestaurantCurrentlyOpen(restaurant.id);
 
   return (
     <div className='relative'>
