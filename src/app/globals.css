@@ -55,3 +55,6 @@ h1{
 .active{
   @apply !bg-green !text-[white]
 }
+.active-mobile-only{
+  @apply max-lg:!bg-green max-lg:!text-[white]
+}

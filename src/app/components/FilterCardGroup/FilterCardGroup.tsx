@@ -59,6 +59,11 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
                   name={filter.name}
                   iconSize='small'
                   title={filter.name}
+                  className={
+                    activeFilters.includes(filter.name.toLowerCase())
+                      ? 'active-mobile-only'
+                      : ''
+                  }
                 />
               </Link>
             </li>
