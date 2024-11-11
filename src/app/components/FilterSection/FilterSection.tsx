@@ -2,14 +2,10 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { IPriceRange } from '@/app/Models/IPriceRange';
 import { addOrRemoveItem } from '@/app/utils/functions/addOrRemoveItem';
 import { deliveryTimeOptions } from '@/app/utils/deliveryTimeOptions';
-import { IFiltersList } from '@/app/Models/IFilter';
+import { IFilterSection } from '@/app/Models/IFilterSection';
 
-type IFilterSection = IFiltersList & {
-  filteredPriceRanges: IPriceRange[];
-};
 const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
   const searchParams = useSearchParams();
   const activeFilters = searchParams.getAll('filter');
