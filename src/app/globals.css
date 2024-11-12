@@ -9,15 +9,18 @@
   --black: rgba(0, 0, 0, 1);
   --green: #00703A;
   --opacity: rgba(255,255,255,0.6);
+  --black-opacity-04: rgba(0,0,0,4.4);
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: dark) {
   :root {
     --white: #121212;
     --stroke: rgba(255, 255, 255, 0.1);
     --off-white: #1E1E1E;
     --black: #E0E0E0;
   --opacity: rgba(0,0,0,0.6);
+  --black-opacity-04: rgba(255,255,255,0.4);
+
   }
 }
 

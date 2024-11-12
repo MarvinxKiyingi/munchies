@@ -23,7 +23,7 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
     <>
       <h2 className='hidden lg:flex text-h1 leading-[normal]'>Filter</h2>
       <div className='hidden lg:flex lg:flex-col lg:gap-[10px] lg:overflow-x-auto no-scrollbar'>
-        <h3 className='text-body text-[rgba(0,0,0,0.4)] font-bold'>
+        <h3 className='text-body text-black-opacity-04 font-bold'>
           FOOD CATEGORY
         </h3>
         <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
@@ -51,7 +51,7 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
         </ul>
       </div>
       <div className='flex flex-col gap-[10px] overflow-x-auto no-scrollbar'>
-        <h3 className='text-body text-[rgba(0,0,0,0.4)] font-bold'>
+        <h3 className='text-body text-black-opacity-04 font-bold'>
           DELIVERY TIME
         </h3>
         <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
@@ -78,7 +78,7 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
       </div>
 
       <div className='hidden flex-col gap-[10px] lg:flex overflow-x-auto no-scrollbar'>
-        <h3 className='text-body text-[rgba(0,0,0,0.4)] font-bold '>
+        <h3 className='text-body text-black-opacity-04 font-bold '>
           PRICE RANGE
         </h3>
         <ul className='flex gap-[10px] lg:flex-wrap'>
