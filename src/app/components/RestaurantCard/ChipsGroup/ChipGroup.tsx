@@ -8,7 +8,7 @@ const ChipsGroup = (props: IChipGroup) => {
   if (isOpen === null || deliveryTime === null) {
     return;
   }
-  const text = isOpen.is_open ? 'Open' : 'Close';
+  const text = isOpen.is_open ? 'Open' : 'Closed';
 
   return (
     <div className='relative flex gap-2 z-10'>

@@ -7,6 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Restaurant webb application',
     start_url: '/',
     display: 'standalone',
+    theme_color: 'var(--off-white)',
     icons: [
       {
         src: '/favicon.ico',
