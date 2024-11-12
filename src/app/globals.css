@@ -11,7 +11,7 @@
   --opacity: rgba(255,255,255,0.6);
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
     --white: #121212;
     --stroke: rgba(255, 255, 255, 0.1);
