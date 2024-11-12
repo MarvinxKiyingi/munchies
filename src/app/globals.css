@@ -3,19 +3,58 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --white: #ffffff;
+  --stroke: rgba(0, 0, 0, 0.1);
+  --off-white: #FAFAFA;
+  --black: rgba(0, 0, 0, 1);
+  --green: #00703A;
+  --opacity: rgba(255,255,255,0.6);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --white: #121212;
+    --stroke: rgba(255, 255, 255, 0.1);
+    --off-white: #1E1E1E;
+    --black: #E0E0E0;
+  --opacity: rgba(0,0,0,0.6);
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply flex flex-col gap-6 h-[100dvh] font-sfProText text-black bg-off-white text-body overflow-hidden lg:gap-12 2xl:mx-auto 2xl:w-min
+}
+
+h1{
+@apply text-h1
+}
+
+.primary-cta{
+  @apply flex w-full justify-center bg-green text-cta text-[white] px-12 py-20 border border-stroke rounded
+}
+
+.secondary-cta{
+  @apply flex w-full justify-center bg-transparent text-cta text-black px-12 py-20 border border-stroke rounded
+}
+
+.chip-button{
+  @apply flex justify-center w-fit px-12 py-8 text-body bg-white text-black border-0.6 border-stroke rounded whitespace-nowrap
+}
+
+.chip-display{
+  @apply flex items-center gap-1 justify-center w-fit px-12 py-8 text-body bg-white text-black border-0.6 border-stroke rounded-large
+}
+
+.open-indicator{
+ @apply w-2.5 h-2.5 bg-green rounded-full
+}
+.closed-indicator{
+@apply w-2.5 h-2.5 bg-black rounded-full
+}
+
+.active{
+  @apply !bg-green !text-[white]
+}
+.active-mobile-only{
+  @apply max-lg:!bg-green max-lg:!text-[white]
 }
