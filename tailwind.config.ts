@@ -105,6 +105,7 @@ const config: Config = {
         black: 'var(--black)',
         green: 'var(--green)',
         opacity: 'var(--opacity)',
+        'black-opacity-04': 'var(--black-opacity-04)',
       },
       fontFamily: {
         sfProText: [
