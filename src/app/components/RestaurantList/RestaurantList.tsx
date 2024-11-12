@@ -1,5 +1,5 @@
 import RestaurantCard from '../RestaurantCard/RestaurantCard';
-import Button from '../Chip/Button';
+import Button from '../Button/Button';
 import { ISearchParams } from '@/app/Models/ISearchParams';
 import { getRestaurants } from '@/app/utils/functions/getRestaurants';
 import { filterRestaurantsByParams } from '@/app/utils/functions/filterRestaurantsByParams';
@@ -77,7 +77,7 @@ const RestaurantList = async ({
           ))}
         </div>
       ) : (
-        <div className='flex flex-col justify-between h-full'>
+        <div className='flex flex-col justify-between h-full pb-24 lg:pb-20'>
           <h3 className='text-h1 font-bold leading-[normal] w-[246px]'>
             No restaurants match your filters.
           </h3>
