@@ -9,7 +9,7 @@ import { generateParamLink } from '@/app/utils/functions/generateParamLink';
 const FilterCardGroup = ({ filters }: IFiltersList) => {
   const searchParams = useSearchParams();
   const activeFiltersObject = {
-    activeFilters: searchParams.getAll('category'),
+    activeCategories: searchParams.getAll('category'),
     activeDeliveryTimes: searchParams.getAll('delivery_time'),
     activePriceRanges: searchParams.getAll('price_range'),
   };
@@ -35,7 +35,7 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
                     iconSize='small'
                     title={category.name}
                     className={
-                      activeFiltersObject.activeFilters.includes(
+                      activeFiltersObject.activeCategories.includes(
                         category.name.toLowerCase()
                       )
                         ? 'active-mobile-only'

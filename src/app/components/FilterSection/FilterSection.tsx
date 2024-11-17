@@ -9,7 +9,7 @@ import FilterChip from '../FilterChip/FilterChip';
 const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
   const searchParams = useSearchParams();
   const activeFiltersObject = {
-    activeFilters: searchParams.getAll('category'),
+    activeCategories: searchParams.getAll('category'),
     activeDeliveryTimes: searchParams.getAll('delivery_time'),
     activePriceRanges: searchParams.getAll('price_range'),
   };
@@ -17,6 +17,7 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
   return (
     <>
       <h2 className='hidden lg:flex text-h1 leading-[normal]'>Filter</h2>
+
       <div className='hidden lg:flex lg:flex-col lg:gap-[10px] lg:overflow-x-auto no-scrollbar'>
         <h3 className='text-body text-black-opacity-04 font-bold'>
           FOOD CATEGORY
@@ -24,7 +25,7 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
         <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
           {(filters?.length ?? 0) > 0 ? (
             filters?.map(({ id, name }) => {
-              const isActive = activeFiltersObject.activeFilters.includes(
+              const isActive = activeFiltersObject.activeCategories.includes(
                 name.toLowerCase()
               );
               const link = generateParamLink(
@@ -45,6 +46,7 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
           )}
         </ul>
       </div>
+
       <div className='flex flex-col gap-[10px] overflow-x-auto no-scrollbar'>
         <h3 className='text-body text-black-opacity-04 font-bold'>
           DELIVERY TIME

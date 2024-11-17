@@ -7,10 +7,10 @@ export const generateParamLink = (
   newFilter: string | null,
   newPriceRange: string | null
 ): string => {
-  const { activeFilters, activeDeliveryTimes, activePriceRanges } =
+  const { activeCategories, activeDeliveryTimes, activePriceRanges } =
     activeFiltersObject;
 
-  const updatedFilters = addOrRemoveItem(activeFilters, newFilter);
+  const updatedFilters = addOrRemoveItem(activeCategories, newFilter);
   const updatedPriceRanges = addOrRemoveItem(activePriceRanges, newPriceRange);
   const updatedDeliveryTimes = addOrRemoveItem(
     activeDeliveryTimes,
