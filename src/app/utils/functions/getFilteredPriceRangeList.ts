@@ -7,8 +7,8 @@ export const getFilteredPriceRangeList = async (): Promise<
   const priceRanges = await getPriceRangeList();
 
   if (!priceRanges || priceRanges.length === 0) {
-    console.error('No price ranges available.');
-    return null;
+    console.log('No price ranges available.');
+    return [];
   }
 
   // Remove duplicate price ranges

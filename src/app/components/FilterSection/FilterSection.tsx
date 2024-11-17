@@ -14,11 +14,6 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
     activePriceRanges: searchParams.getAll('price_range'),
   };
 
-  if (!filters) {
-    console.error('No filters available.');
-    return <div>No filters available. Please try again later.</div>;
-  }
-
   return (
     <>
       <h2 className='hidden lg:flex text-h1 leading-[normal]'>Filter</h2>
@@ -27,27 +22,31 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
           FOOD CATEGORY
         </h3>
         <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
-          {filters.map((category) => (
-            <li key={category.id}>
-              <Link
-                className={`chip-button ${
-                  activeFiltersObject.activeFilters.includes(
-                    category.name.toLowerCase()
-                  )
-                    ? 'active'
-                    : ''
-                }`}
-                href={generateParamLink(
-                  { ...activeFiltersObject },
-                  null,
-                  category.name.toLowerCase(),
-                  null
-                )}
-              >
-                {category.name}
-              </Link>
-            </li>
-          ))}
+          {(filters?.length ?? 0) > 0 ? (
+            filters?.map((category) => (
+              <li key={category.id}>
+                <Link
+                  className={`chip-button ${
+                    activeFiltersObject.activeFilters.includes(
+                      category.name.toLowerCase()
+                    )
+                      ? 'active'
+                      : ''
+                  }`}
+                  href={generateParamLink(
+                    { ...activeFiltersObject },
+                    null,
+                    category.name.toLowerCase(),
+                    null
+                  )}
+                >
+                  {category.name}
+                </Link>
+              </li>
+            ))
+          ) : (
+            <div>No filters available. Please try again later.</div>
+          )}
         </ul>
       </div>
       <div className='flex flex-col gap-[10px] overflow-x-auto no-scrollbar'>
@@ -82,27 +81,31 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
           PRICE RANGE
         </h3>
         <ul className='flex gap-[10px] lg:flex-wrap'>
-          {filteredPriceRanges.map((priceRange) => (
-            <li key={priceRange.id}>
-              <Link
-                className={`chip-button ${
-                  activeFiltersObject.activePriceRanges.includes(
+          {filteredPriceRanges ? (
+            filteredPriceRanges.map((priceRange) => (
+              <li key={priceRange.id}>
+                <Link
+                  className={`chip-button ${
+                    activeFiltersObject.activePriceRanges.includes(
+                      priceRange.range
+                    )
+                      ? 'active'
+                      : ''
+                  }`}
+                  href={generateParamLink(
+                    { ...activeFiltersObject },
+                    null,
+                    null,
                     priceRange.range
-                  )
-                    ? 'active'
-                    : ''
-                }`}
-                href={generateParamLink(
-                  { ...activeFiltersObject },
-                  null,
-                  null,
-                  priceRange.range
-                )}
-              >
-                {priceRange.range}
-              </Link>
-            </li>
-          ))}
+                  )}
+                >
+                  {priceRange.range}
+                </Link>
+              </li>
+            ))
+          ) : (
+            <div>No restaurants available. Please try again later.</div>
+          )}
         </ul>
       </div>
     </>

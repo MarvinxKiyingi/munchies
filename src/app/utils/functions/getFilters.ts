@@ -7,8 +7,8 @@ export const getFilters = async (): Promise<IFilter[] | null> => {
   );
 
   if (!res.ok) {
-    console.error('Failed to fetch filters: ' + res.statusText);
-    return null;
+    console.log('Failed to fetch filters: ' + res.statusText);
+    return [];
   }
 
   const data: IFiltersList = await res.json();
