@@ -9,7 +9,7 @@ import { generateParamLink } from '@/app/utils/functions/generateParamLink';
 const FilterCardGroup = ({ filters }: IFiltersList) => {
   const searchParams = useSearchParams();
   const activeFiltersObject = {
-    activeFilters: searchParams.getAll('filter'),
+    activeFilters: searchParams.getAll('category'),
     activeDeliveryTimes: searchParams.getAll('delivery_time'),
     activePriceRanges: searchParams.getAll('price_range'),
   };
@@ -22,24 +22,24 @@ const FilterCardGroup = ({ filters }: IFiltersList) => {
     <div className='flex flex-col gap-5 min-h-[80px] overflow-auto no-scrollbar'>
       <div className='flex overflow-x-auto no-scrollbar min-h-[80px] px-24 lg:pl-0'>
         <ul className='flex gap-[10px] '>
-          {filters.map((filter) => (
-            <li key={filter.id}>
+          {filters.map((category) => (
+            <li key={category.id}>
               <Link
                 href={generateParamLink(
                   { ...activeFiltersObject },
                   null,
-                  filter.name.toLowerCase(),
+                  category.name.toLowerCase(),
                   null
                 )}
               >
                 <FoodCard
-                  image_url={filter.image_url}
-                  name={filter.name}
+                  image_url={category.image_url}
+                  name={category.name}
                   iconSize='small'
-                  title={filter.name}
+                  title={category.name}
                   className={
                     activeFiltersObject.activeFilters.includes(
-                      filter.name.toLowerCase()
+                      category.name.toLowerCase()
                     )
                       ? 'active-mobile-only'
                       : ''

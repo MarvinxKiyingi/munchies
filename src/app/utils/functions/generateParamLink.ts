@@ -24,7 +24,7 @@ export const generateParamLink = (
   };
 
   appendParams('delivery_time', updatedDeliveryTimes);
-  appendParams('filter', updatedFilters);
+  appendParams('category', updatedFilters);
   appendParams('price_range', updatedPriceRanges);
 
   return `?${queryParams.toString()}`;

@@ -32,7 +32,7 @@ const RestaurantList = async ({
     return [];
   }
 
-  const selectedFilters = getSelectedParams(resolvedSearchParams.filter);
+  const selectedFilters = getSelectedParams(resolvedSearchParams.category);
 
   const selectedPriceRanges = getSelectedParams(
     resolvedSearchParams.price_range
@@ -43,8 +43,8 @@ const RestaurantList = async ({
   );
 
   const filterIds = filters
-    .filter((filter) => selectedFilters.includes(filter.name.toLowerCase()))
-    .map((filter) => filter.id);
+    .filter((category) => selectedFilters.includes(category.name.toLowerCase()))
+    .map((category) => category.id);
 
   const priceRangeIds = filteredPriceRanges
     .filter((priceRange) => selectedPriceRanges.includes(priceRange.range))
@@ -85,7 +85,7 @@ const RestaurantList = async ({
             as='link'
             href='/'
             variant='primary'
-            text='Reset filter'
+            text='Reset category'
             className=''
           />
         </div>

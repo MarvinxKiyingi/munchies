@@ -1,5 +1,5 @@
 export interface ISearchParams {
-  filter?: string | string[];
+  category?: string | string[];
   price_range?: string | string[];
   delivery_time?: string;
 }

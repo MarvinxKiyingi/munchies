@@ -9,7 +9,7 @@ import { generateParamLink } from '@/app/utils/functions/generateParamLink';
 const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
   const searchParams = useSearchParams();
   const activeFiltersObject = {
-    activeFilters: searchParams.getAll('filter'),
+    activeFilters: searchParams.getAll('category'),
     activeDeliveryTimes: searchParams.getAll('delivery_time'),
     activePriceRanges: searchParams.getAll('price_range'),
   };
@@ -27,12 +27,12 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
           FOOD CATEGORY
         </h3>
         <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
-          {filters.map((filter) => (
-            <li key={filter.id}>
+          {filters.map((category) => (
+            <li key={category.id}>
               <Link
                 className={`chip-button ${
                   activeFiltersObject.activeFilters.includes(
-                    filter.name.toLowerCase()
+                    category.name.toLowerCase()
                   )
                     ? 'active'
                     : ''
@@ -40,11 +40,11 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
                 href={generateParamLink(
                   { ...activeFiltersObject },
                   null,
-                  filter.name.toLowerCase(),
+                  category.name.toLowerCase(),
                   null
                 )}
               >
-                {filter.name}
+                {category.name}
               </Link>
             </li>
           ))}
