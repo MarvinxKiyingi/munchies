@@ -7,10 +7,10 @@ export const generateParamLink = (
   newFilter: string | null,
   newPriceRange: string | null
 ): string => {
-  const { activeFilters, activeDeliveryTimes, activePriceRanges } =
+  const { activeCategories, activeDeliveryTimes, activePriceRanges } =
     activeFiltersObject;
 
-  const updatedFilters = addOrRemoveItem(activeFilters, newFilter);
+  const updatedFilters = addOrRemoveItem(activeCategories, newFilter);
   const updatedPriceRanges = addOrRemoveItem(activePriceRanges, newPriceRange);
   const updatedDeliveryTimes = addOrRemoveItem(
     activeDeliveryTimes,
@@ -24,7 +24,7 @@ export const generateParamLink = (
   };
 
   appendParams('delivery_time', updatedDeliveryTimes);
-  appendParams('filter', updatedFilters);
+  appendParams('category', updatedFilters);
   appendParams('price_range', updatedPriceRanges);
 
   return `?${queryParams.toString()}`;

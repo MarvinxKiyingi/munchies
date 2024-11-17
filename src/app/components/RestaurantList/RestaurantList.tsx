@@ -15,24 +15,10 @@ const RestaurantList = async ({
   resolvedSearchParams: ISearchParams;
 }) => {
   const restaurants = await getRestaurants();
-  if (!restaurants) {
-    console.error('No restaurants available.');
-    return <div>No restaurants available. Please try again later.</div>;
-  }
-
   const filters = await getFilters();
-  if (filters === null) {
-    console.error('No filters available.');
-    return [];
-  }
-
   const filteredPriceRanges = await getFilteredPriceRangeList();
-  if (filteredPriceRanges === null) {
-    console.error('No price ranges available.');
-    return [];
-  }
 
-  const selectedFilters = getSelectedParams(resolvedSearchParams.filter);
+  const selectedFilters = getSelectedParams(resolvedSearchParams.category);
 
   const selectedPriceRanges = getSelectedParams(
     resolvedSearchParams.price_range
@@ -43,11 +29,13 @@ const RestaurantList = async ({
   );
 
   const filterIds = filters
-    .filter((filter) => selectedFilters.includes(filter.name.toLowerCase()))
-    .map((filter) => filter.id);
+    ?.filter((category) =>
+      selectedFilters.includes(category.name.toLowerCase())
+    )
+    .map((category) => category.id);
 
   const priceRangeIds = filteredPriceRanges
-    .filter((priceRange) => selectedPriceRanges.includes(priceRange.range))
+    ?.filter((priceRange) => selectedPriceRanges.includes(priceRange.range))
     .map((priceRange) => priceRange.id);
 
   const selectedDeliveryTimeValues = deliveryTimeOptions
@@ -64,17 +52,23 @@ const RestaurantList = async ({
   });
 
   const sortedRestaurantsByOpenStatus =
-    await sortRestaurantsByStatusAndDeliveryTime(filteredRestaurants);
+    await sortRestaurantsByStatusAndDeliveryTime(filteredRestaurants ?? []);
 
   return (
     <div className='flex flex-col gap-5 h-full overflow-auto no-scrollbar px-24 lg:gap-8 lg:px-0 lg:w-[88%]'>
       <h2 className='text-[20px]'>Restaurant’s</h2>
 
-      {filteredRestaurants.length > 0 ? (
+      {(filteredRestaurants?.length ?? 0) > 0 ? (
         <div className='flex flex-col gap-5 pb-24 overflow-auto no-scrollbar lg:pb-0 lg:grid lg:grid-cols-3'>
-          {sortedRestaurantsByOpenStatus.map((restaurant) => (
-            <RestaurantCard key={restaurant.id} {...restaurant} />
-          ))}
+          {sortedRestaurantsByOpenStatus?.map((restaurant) => {
+            return (
+              <RestaurantCard
+                key={restaurant.id}
+                filters={filters}
+                {...restaurant}
+              />
+            );
+          })}
         </div>
       ) : (
         <div className='flex flex-col justify-between h-full pb-24 lg:pb-20'>
@@ -85,7 +79,7 @@ const RestaurantList = async ({
             as='link'
             href='/'
             variant='primary'
-            text='Reset filter'
+            text='Reset category'
             className=''
           />
         </div>

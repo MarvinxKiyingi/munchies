@@ -9,6 +9,7 @@ export const getPriceRange = async (
   );
 
   if (!res.ok) {
+    console.log('Failed to fetch price range: ' + res.statusText);
     return null;
   }
   const data: IPriceRange = await res.json();

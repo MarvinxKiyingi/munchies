@@ -6,21 +6,13 @@ export const getPriceRangeList = async (): Promise<IPriceRange[] | null> => {
   const restaurants = await getRestaurants();
 
   if (!restaurants || restaurants.length === 0) {
-    console.error('No restaurants found');
-    return null;
+    console.log('No restaurants found');
+    return [];
   }
 
   const priceRanges = await Promise.all(
     restaurants.map(async (restaurant) => {
-      try {
-        return await getPriceRange(restaurant.price_range_id);
-      } catch (error) {
-        console.error(
-          `Failed to fetch price range for restaurant ${restaurant.id}:`,
-          error
-        );
-        return null;
-      }
+      return await getPriceRange(restaurant.price_range_id);
     })
   );
 

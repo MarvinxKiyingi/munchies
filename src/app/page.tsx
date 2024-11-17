@@ -9,16 +9,7 @@ const HomePage = async ({ searchParams }: ISearchParamsPromise) => {
   const resolvedSearchParams = searchParams ? await searchParams : {};
 
   const filteredPriceRanges = await getFilteredPriceRangeList();
-  if (filteredPriceRanges === null) {
-    console.error('No restaurants available.');
-    return <div>No restaurants available. Please try again later.</div>;
-  }
-
   const filters = await getFilters();
-  if (filters === null) {
-    console.error('No filters available.');
-    return <div>No filters available. Please try again later.</div>;
-  }
 
   return (
     <section className='flex flex-col flex-1 gap-6 overflow-hidden no-scrollbar lg:flex-row lg:gap-[20px] lg:pl-40'>

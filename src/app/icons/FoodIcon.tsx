@@ -9,8 +9,8 @@ export type IFoodIcon = {
 const FoodIcon = ({
   image_url,
   size = 'small',
-  className,
-  name,
+  className = '',
+  name = '',
 }: IFoodIcon) => {
   const iconSize = size === 'small' ? '80' : '140';
   const imagePath = `${image_url}`;

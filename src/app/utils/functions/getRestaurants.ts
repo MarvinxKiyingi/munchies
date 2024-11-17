@@ -7,7 +7,7 @@ export const getRestaurants = async (): Promise<IRestaurant[] | null> => {
   );
 
   if (!res.ok) {
-    console.error('Failed to fetch restaurants: ' + res.statusText);
+    console.log('Failed to fetch restaurants: ' + res.statusText);
     return null;
   }
 

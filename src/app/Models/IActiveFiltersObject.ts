@@ -1,5 +1,5 @@
 export type IActiveFiltersObject = {
-  activeFilters: string[];
+  activeCategories: string[];
   activeDeliveryTimes: string[];
   activePriceRanges: string[];
 };

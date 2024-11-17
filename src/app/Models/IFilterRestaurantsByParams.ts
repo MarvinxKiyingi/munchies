@@ -1,8 +1,8 @@
 import { IRestaurant } from './IRestaurant';
 
 export type IFilterRestaurantsByParams = {
-  filterIds: string[];
-  priceRangeIds: string[];
-  restaurants: IRestaurant[];
+  filterIds: string[] | undefined;
+  priceRangeIds: string[] | undefined;
+  restaurants: IRestaurant[] | null;
   selectedDeliveryTimeValues: string[];
 };

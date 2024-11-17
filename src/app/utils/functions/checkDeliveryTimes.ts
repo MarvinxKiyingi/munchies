@@ -16,7 +16,7 @@ export const checkDeliveryTimes = (
     const [min, max] = deliveryOption.value.split('-').map(Number);
 
     return (
-      deliveryTime >= min && (max ? deliveryTime <= max : deliveryTime > 60) // Handle "1 hour+" case
+      deliveryTime >= min && (max ? deliveryTime <= max : deliveryTime >= 60) // Handle "1 hour+" case
     );
   });
 };
