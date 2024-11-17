@@ -1,10 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { deliveryTimeOptions } from '@/app/utils/deliveryTimeOptions';
 import { IFilterSection } from '@/app/Models/IFilterSection';
 import { generateParamLink } from '@/app/utils/functions/generateParamLink';
+import FilterChip from '../FilterChip/FilterChip';
 
 const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
   const searchParams = useSearchParams();
@@ -23,27 +23,23 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
         </h3>
         <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
           {(filters?.length ?? 0) > 0 ? (
-            filters?.map((category) => (
-              <li key={category.id}>
-                <Link
-                  className={`chip-button ${
-                    activeFiltersObject.activeFilters.includes(
-                      category.name.toLowerCase()
-                    )
-                      ? 'active'
-                      : ''
-                  }`}
-                  href={generateParamLink(
-                    { ...activeFiltersObject },
-                    null,
-                    category.name.toLowerCase(),
-                    null
-                  )}
-                >
-                  {category.name}
-                </Link>
-              </li>
-            ))
+            filters?.map(({ id, name }) => {
+              const isActive = activeFiltersObject.activeFilters.includes(
+                name.toLowerCase()
+              );
+              const link = generateParamLink(
+                { ...activeFiltersObject },
+                null,
+                name.toLowerCase(),
+                null
+              );
+
+              return (
+                <li key={id}>
+                  <FilterChip isActive={isActive} href={link} text={name} />
+                </li>
+              );
+            })
           ) : (
             <div>No filters available. Please try again later.</div>
           )}
@@ -54,25 +50,22 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
           DELIVERY TIME
         </h3>
         <ul className='flex gap-[10px] overflow-x-auto no-scrollbar lg:flex-wrap'>
-          {deliveryTimeOptions.map(({ label, value }) => (
-            <li key={value}>
-              <Link
-                className={`chip-button ${
-                  activeFiltersObject.activeDeliveryTimes.includes(value)
-                    ? 'active'
-                    : ''
-                }`}
-                href={generateParamLink(
-                  { ...activeFiltersObject },
-                  value,
-                  null,
-                  null
-                )}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
+          {deliveryTimeOptions.map(({ label, value }) => {
+            const isActive =
+              activeFiltersObject.activeDeliveryTimes.includes(value);
+            const link = generateParamLink(
+              { ...activeFiltersObject },
+              value,
+              null,
+              null
+            );
+
+            return (
+              <li key={value}>
+                <FilterChip isActive={isActive} href={link} text={label} />
+              </li>
+            );
+          })}
         </ul>
       </div>
 
@@ -81,28 +74,23 @@ const FilterSection = ({ filteredPriceRanges, filters }: IFilterSection) => {
           PRICE RANGE
         </h3>
         <ul className='flex gap-[10px] lg:flex-wrap'>
-          {filteredPriceRanges ? (
-            filteredPriceRanges.map((priceRange) => (
-              <li key={priceRange.id}>
-                <Link
-                  className={`chip-button ${
-                    activeFiltersObject.activePriceRanges.includes(
-                      priceRange.range
-                    )
-                      ? 'active'
-                      : ''
-                  }`}
-                  href={generateParamLink(
-                    { ...activeFiltersObject },
-                    null,
-                    null,
-                    priceRange.range
-                  )}
-                >
-                  {priceRange.range}
-                </Link>
-              </li>
-            ))
+          {(filteredPriceRanges?.length ?? 0) > 0 ? (
+            filteredPriceRanges?.map(({ id, range }) => {
+              const isActive =
+                activeFiltersObject.activePriceRanges.includes(range);
+              const link = generateParamLink(
+                { ...activeFiltersObject },
+                null,
+                null,
+                range
+              );
+
+              return (
+                <li key={id}>
+                  <FilterChip isActive={isActive} href={link} text={range} />
+                </li>
+              );
+            })
           ) : (
             <div>No restaurants available. Please try again later.</div>
           )}

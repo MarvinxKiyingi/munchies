@@ -11,6 +11,7 @@ const RestaurantCard = async ({
   id,
   name,
   isOpen,
+  filters,
 }: IRestaurantCard) => {
   const restaurant = await getRestaurantById(id);
   if (!restaurant) {
@@ -18,10 +19,15 @@ const RestaurantCard = async ({
     return <div>No restaurants available. Please try again later.</div>;
   }
 
+  const category = filters?.find(
+    (filter) => filter.id === restaurant.filter_ids[0]
+  );
+
   return (
     <div className='relative'>
       <div className='relative flex flex-col justify-between gap-4 w-full h-[202px] border-0.6 border-stroke rounded p-16 bg-white overflow-hidden'>
         <FoodIcon
+          name={category?.name}
           image_url={image_url}
           size='large'
           className={`absolute top-[-30px] right-[-30px]`}

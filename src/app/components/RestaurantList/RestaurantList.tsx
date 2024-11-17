@@ -60,9 +60,15 @@ const RestaurantList = async ({
 
       {(filteredRestaurants?.length ?? 0) > 0 ? (
         <div className='flex flex-col gap-5 pb-24 overflow-auto no-scrollbar lg:pb-0 lg:grid lg:grid-cols-3'>
-          {sortedRestaurantsByOpenStatus?.map((restaurant) => (
-            <RestaurantCard key={restaurant.id} {...restaurant} />
-          ))}
+          {sortedRestaurantsByOpenStatus?.map((restaurant) => {
+            return (
+              <RestaurantCard
+                key={restaurant.id}
+                filters={filters}
+                {...restaurant}
+              />
+            );
+          })}
         </div>
       ) : (
         <div className='flex flex-col justify-between h-full pb-24 lg:pb-20'>
